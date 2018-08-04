@@ -16,8 +16,10 @@
   "author": "crazy.zhou",
   "license": "ISC",
   "dependencies": {
+    "jade": "^1.11.0",
     "koa": "^2.5.2",
     "koa-router": "^7.4.0",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4"
   }
 }
