@@ -7,3 +7,9 @@ mongoose.connect(config.db,(err)=>{
         console.log("connect to mongoodb successful!");
     }
 });
+
+const ArticleModel = mongoose.model("article",require("./article"));
+
+module.exports = {
+    ArticleModel
+};

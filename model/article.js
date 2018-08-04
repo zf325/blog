@@ -3,10 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Article = new Schema({
-    // id:{
-    //     type:Schema.ObjectId
-    // },
+const ArticleSchema = new Schema({
     title:{
         type:String,
         require:true,
@@ -30,19 +27,27 @@ const Article = new Schema({
                 },
                 require:true
             },
+            content:{
+                type:String,
+                
+            }
 
         }
     ],
     hidden:Boolean,
-    views:Number,
-    likes:Number,
-    // meta:{
-    //     like:Number,
-    //     votes:Number
-    // },
+    views:{
+        type:Number,
+        default:0
+    },
+    likes:{
+        type:Number,
+        default:0
+    },
     category:String,
     createdAt:{
         type:Date,
         default:Date.now()
     }
-})
+});
+
+module.exports = ArticleSchema;
