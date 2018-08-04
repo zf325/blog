@@ -22,6 +22,8 @@ router.get('/category/:category/article',categoryControl.articles);//
 router.get('/tag',tagControl.list);
 router.get('/tag/:tag/article',tagControl.articles);
 
+router.all("/article",articleControl.create);
+
 
 
 module.exports = router;
