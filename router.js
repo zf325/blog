@@ -1,6 +1,7 @@
 "use strict";
 
 const Router = require("koa-router");
+const {articleControl,commentControl,categoryControl,tagControl} = require("./control");
 
 
 let router = new Router();
@@ -16,8 +17,8 @@ router.get('/article/latest',articleControl.latest);
 router.get('/article/hot',articleControl.hot);
 router.get('/article/:id',articleControl.detail);
 router.get('/article/:id/comment',commentControl.detail);
-router.get('/categoty',categotyControl.list);//
-router.get('/categoty/:categoty/article',categotyControl.articles);//
+router.get('/category',categoryControl.list);//
+router.get('/category/:category/article',categoryControl.articles);//
 router.get('/tag',tagControl.list);
 router.get('/tag/:tag/article',tagControl.articles);
 
