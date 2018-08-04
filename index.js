@@ -19,11 +19,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 
 
+http.createServer(app.callback()).listen(config.port,config.host);
 
-
-
-
-const server = http.createServer(app.callback()).listen(config.port,config.host);
-
-Log.debug(`The server is running on ${config.host}:${config.port}`);
+Log.info(`The server is running on ${config.host}:${config.port}`);
 
