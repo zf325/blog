@@ -34,10 +34,12 @@ const Article = new Schema({
         }
     ],
     hidden:Boolean,
-    meta:{
-        like:Number,
-        votes:Number
-    },
+    views:Number,
+    likes:Number,
+    // meta:{
+    //     like:Number,
+    //     votes:Number
+    // },
     category:String,
     createdAt:{
         type:Date,
