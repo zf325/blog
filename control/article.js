@@ -8,23 +8,24 @@ exports.latest = async(ctx,next)=>{
     const kw = ctx.query.kw||"";
     const page = ctx.query.page||1;
     const size = ctx.query.size||10;
-    const sortby = ctx.query.sortby||"createdAt";
+    let sortby = "createdAt";
     const sort = ctx.query.sort||-1;
 
     let result = {code:-1,msg:"unknow error"};
-
+    sortby = sort === 1?sortby:"-"+sortby;
     try{
         let where = {};
         if(kw){
             where = {$or:{title:kw,body:kw}};
         }
-        let articles = await ArticleModel.find(where).select("id title desc views likes tags").limit(size).skip((page-1) * size).sort({sortby:sort}).then();
+        let articles = await ArticleModel.find(where).select("id title desc views likes tags").limit(size).skip((page-1) * size).sort(sortby).then();
 
         if(articles){
             result.data = articles;   
         }
 
         result.code = 0;
+        result.msg = "Get latest articles successful."
     }catch(err){
         Log.error("Get latest articles",err.message);
     }
@@ -38,7 +39,29 @@ exports.hot = async(ctx,next)=>{
 }
 
 exports.detail = async(ctx,next)=>{
+    const id = ctx.params.id ||"";
 
+    let result = {code:-1,msg:"unknow error"};
+
+    if(id){
+        try{
+            let article = await ArticleModel.findOne({_id:id}).select("title body authors tages views likes coments").then();
+            if(article){
+                result.data = article;
+                result.code = 0;
+                result.msg = "Get article detail successsful.";
+            }
+
+        }catch(err){
+            Log.error("Get detail of the article Id:"+id,err.message);
+        }
+        
+
+    }else{
+        result.msg = "The article Id is empty.";
+    }
+
+    ctx.body = result;
 }
 
 exports.list = async(ctx,next)=>{
@@ -51,15 +74,16 @@ exports.list = async(ctx,next)=>{
 
     let result = {code:-1,msg:"unknow error"};
 
+    sortby = sort === 1?sortby:"-"+sortby;
+
     try{
         let where = {};
         if(kw){
             where = {$or:{title:kw,body:kw}};
         }
-        let articles = await ArticleModel.find(where).limit(size).skip((page-1) * size).sortby(sortby,sort).then();
+        let articles = await ArticleModel.find(where).select("title desc author views likes tags").limit(size).skip((page-1) * size).sort(sortby).then();
 
         if(articles){
-            console.log(articles);
             result.data = articles;   
         }
 
