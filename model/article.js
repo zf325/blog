@@ -40,11 +40,11 @@ const ArticleSchema = new Schema({
     hidden:Boolean,
     views:{
         type:Number,
-        default:0
+        default:1
     },
     likes:{
         type:Number,
-        default:0
+        default:1
     },
     category:String,
     createdAt:{
