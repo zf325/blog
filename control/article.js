@@ -41,11 +41,11 @@ exports.create = async(ctx,next)=>{
             }
 
         }catch(err){
-            Log.error("create new article",err.message);
+            Log.error("Create new article",err.message);
         }
 
     }else{
-        result.msg = "some paramsters empty!"
+        result.msg = "Some paramsters empty!"
     }
 
 }
