@@ -9,6 +9,9 @@ const ArticleSchema = new Schema({
         require:true,
         index:true
     },
+    desc:{
+        type:String
+    },
     body:{
         type:String,
         require:true
@@ -29,7 +32,7 @@ const ArticleSchema = new Schema({
             },
             content:{
                 type:String,
-                
+
             }
 
         }
