@@ -36,6 +36,8 @@ exports.create = async(ctx,next)=>{
 
             if(article){
                 console.log(article);
+                result.code = 0;
+                result.msg = "Save successful.";
             }
 
         }catch(err){
