@@ -19,8 +19,6 @@ app.use(koaBody());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-
-
 http.createServer(app.callback()).listen(config.port,config.host);
 
 Log.info(`The server is running on ${config.host}:${config.port}`);

@@ -38,41 +38,12 @@ exports.hot = async(ctx,next)=>{
 
 }
 
-//render ejs to html
-exports.detail = async(ctx,next)=>{
-    const id = ctx.params.id ||"";
-
-    if(id){
-        try{
-
-            let article = await ArticleModel.findOne({_id:id}).select("title body authors tages views likes coments").then();
-
-            if(article){
-
-                await ctx.render('article.ejs',article);
-                
-            }else{
-               await ctx.render("404.ejs");
-            }
-
-        }catch(err){
-            Log.error("Get detail of the article Id:"+id,err.message);
-            await ctx.render("400.ejs");
-        }
-        
-    }else{
-        result.msg = "The article Id is empty.";
-        await ctx.render("404.ejs");
-    }
-
-}
-
 exports.list = async(ctx,next)=>{
 
     const kw = ctx.query.kw||"";
     const page = ctx.query.page||1;
     const size = ctx.query.size||10;
-    const sortby = ctx.query.sortby||"createdAt";
+    let sortby = ctx.query.sortby||"createdAt";
     const sort = ctx.query.sort||-1;
 
     let result = {code:-1,msg:"unknow error"};
