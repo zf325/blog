@@ -38,30 +38,33 @@ exports.hot = async(ctx,next)=>{
 
 }
 
+//render ejs to html
 exports.detail = async(ctx,next)=>{
     const id = ctx.params.id ||"";
 
-    let result = {code:-1,msg:"unknow error"};
-
     if(id){
         try{
+
             let article = await ArticleModel.findOne({_id:id}).select("title body authors tages views likes coments").then();
+
             if(article){
-                result.data = article;
-                result.code = 0;
-                result.msg = "Get article detail successsful.";
+
+                await ctx.render('article.ejs',article);
+                
+            }else{
+               await ctx.render("404.ejs");
             }
 
         }catch(err){
             Log.error("Get detail of the article Id:"+id,err.message);
+            await ctx.render("400.ejs");
         }
         
-
     }else{
         result.msg = "The article Id is empty.";
+        await ctx.render("404.ejs");
     }
 
-    ctx.body = result;
 }
 
 exports.list = async(ctx,next)=>{
