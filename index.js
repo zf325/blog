@@ -13,7 +13,7 @@ const router = require("./router");
 
 let app = new koa();
 
-app.use(views(path.join(__dirname,"view"),{map:{html:"jade"}}));
+app.use(views(path.join(__dirname,"view"),{map:{html:"ejs"}}));
 app.use(statics(path.join(__dirname,"static")));
 app.use(koaBody());
 
