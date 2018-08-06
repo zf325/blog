@@ -19,6 +19,16 @@ app.use(koaBody());
 
 app.use(router.routes()).use(router.allowedMethods());
 
+app.use(async(ctx,next)=>{
+    try{
+        await next();
+    }catch(err){
+        Log.error("uncatch error",err.message);
+        ctx.status = 500;//inside err
+        await ctx.render("500.ejs");
+    }
+})
+
 http.createServer(app.callback()).listen(config.port,config.host);
 
 Log.info(`The server is running on ${config.host}:${config.port}`);

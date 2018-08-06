@@ -43,3 +43,7 @@ exports.article = async(ctx,next)=>{
 exports.articles = async(ctx,next)=>{
 
 }
+
+exports.notFound = async(ctx,next)=>{
+    await ctx.render("404.ejs");
+}
