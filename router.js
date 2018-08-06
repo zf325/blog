@@ -1,16 +1,17 @@
 "use strict";
 
 const Router = require("koa-router");
-const {articleControl,commentControl,categoryControl,tagControl} = require("./control");
+const markdown = require("markdown-it");
+const {viewControl,articleControl,commentControl,categoryControl,tagControl} = require("./control");
+const md = new markdown();
+const body =md.render("# first");
 
 
 let router = new Router();
 router.get("/test",async(ctx,next)=>{
     ctx.body = {code:0};
 });
-router.get("/",async(ctx,next)=>{
-    await ctx.render("index.jade");
-});
+router.get("/",viewControl.index);
 
 router.post("/article",articleControl.create);
 router.get('/article/latest',articleControl.latest);
