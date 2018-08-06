@@ -37,7 +37,10 @@ const ArticleSchema = new Schema({
 
         }
     ],
-    hidden:Boolean,
+    hidden:{
+        type:Boolean,
+        default:false
+    },
     views:{
         type:Number,
         default:1
