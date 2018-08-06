@@ -97,16 +97,17 @@ exports.list = async(ctx,next)=>{
 }
 
 exports.create = async(ctx,next)=>{
-    const title = ctx.request.query.title||"";
-    const body = ctx.request.query.body||"";
-    const author = ctx.request.query.author||"";
-    const tags = ctx.request.query.tags||"";
+    const title = ctx.request.body.title||"";
+    const body = ctx.request.body.body||"";
+    const author = ctx.request.body.author||"";
+    let tags = ctx.request.body.tags||"";
 
     let result = {code:-1,msg:"unknow err"};
 
     if(title&&body&&author&&tags){
 
         try{
+            tags = tags.split("|")||[];
             let article = await ArticleModel.create({title,body,author,tags}).then();
 
             if(article){
@@ -122,6 +123,36 @@ exports.create = async(ctx,next)=>{
     }else{
         result.msg = "Some paramsters empty!"
     }
+    ctx.body = result;
+}
+
+exports.view = async(ctx,next)=>{
+
+    const id = ctx.params.id || "";
+    let result = {code:-1,msg:"unknow error"};
+    if(id){
+        await ArticleModel.update({_id:id},{$inc:{views:1}}).then();
+        result.code = 0;
+        result.msg = "views increase succesful."
+    }else{
+        result.msg = "article id empty";
+    }
+
+    ctx.body = result;
+
+}
+
+exports.like = async(ctx,next)=>{
+    const id = ctx.params.id || "";
+    let result = {code:-1,msg:"unknow error"};
+    if(id){
+       await ArticleModel.update({_id:id},{$inc:{likes:1}}).then();
+        result.code = 0;
+        result.msg = "likes increase succesful."
+    }else{
+        result.msg = "article id empty";
+    }
+
     ctx.body = result;
 }
 
