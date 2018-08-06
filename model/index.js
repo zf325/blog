@@ -9,7 +9,9 @@ mongoose.connect(config.db,(err)=>{
 });
 
 const ArticleModel = mongoose.model("article",require("./article"));
+const TagModel = mongoose.model("tag",require("./tag"));
 
 module.exports = {
-    ArticleModel
+    ArticleModel,
+    TagModel
 };

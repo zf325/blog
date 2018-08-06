@@ -1,7 +1,7 @@
 "use strict";
 
 const markdown = require("markdown-js");
-const {ArticleModel} = require("./../model");
+const {ArticleModel,TagModel} = require("./../model");
 const Log = require("./../logs/log");
 
 exports.latest = async(ctx,next)=>{
@@ -109,6 +109,10 @@ exports.create = async(ctx,next)=>{
         try{
             tags = tags.split("|")||[];
             let article = await ArticleModel.create({title,body,author,tags}).then();
+
+            tags.map(async(tag)=>{
+                await TagModel.update({tag},{$inc:{count:1}},{upsert:true});
+            });
 
             if(article){
 
