@@ -18,14 +18,14 @@ Log.debug = (desc,errMsg)=>{
 Log.info = (desc)=>{
     const env = process.env.NODE_ENV||"development";
     const temp = `[${new Date().toLocaleString()}][info] ${desc}`;
-    if(env === 'development1'){
+    if(env === 'development'){
         console.log(temp);
     }else{
-        Log.writeLog(temp);
+        writeLog(temp);
     }
 }
 
-Log.writeLog = (log)=>{
+let writeLog = (log)=>{
     const date = new Date();
     const file = `${date.getFullYear()}-${date.getMonth() + 1}`;
     const filepath = path.join(__dirname,`./${file}.log`);
@@ -42,7 +42,7 @@ Log.error = (desc,err)=>{
     if(env === 'development'){
         console.log(temp);
     }else{
-        Log.writeLog(temp);
+        writeLog(temp);
     }
 }
 
