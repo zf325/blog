@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>article</title>
+    <link href = "../css/common.css" rel = "stylesheet">
+    <link href = "../css/article.css" rel = "stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title><%- title %></title>
 </head>
 <body>
-    <%- title %>
-    <%- desc %>
-    <%- author %>
-    <%- body %>
+    <div class = "nav"></div>
+    <div class = "mid-cont">
+        <h1><%- title %></h1>
+        <div>
+            <span>
+                <small><%- createdAt %></small>
+            </span>
+            <span>
+                    <i>作者</i>
+                    <small><%- author %></small>
+                </span>
+            <span>
+                <i>阅读</i>
+                <small><%- views %></small>
+            </span>
+            <span>
+                <i>喜欢</i>
+                <small><%- likes %></small>
+            </span>
+        </div>
+        <div class = "body">
+            <%- body %>
+        </div>
+    </div>
+    
 </body>
 </html>
