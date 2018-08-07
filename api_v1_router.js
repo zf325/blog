@@ -1,7 +1,14 @@
 "use strict";
 
 const Router = require("koa-router");
-const {articleControl,commentControl,categoryControl,tagControl} = require("./control");
+const {
+        articleControl,
+        commentControl,
+        categoryControl,
+        tagControl,
+        imageControl
+    } = require("./control");
+    
 const router = new Router();
 
 
@@ -18,6 +25,9 @@ router.post('/category',categoryControl.new);
 router.get('/category/:category/article',categoryControl.articles);
 router.get('/tag',tagControl.list);
 router.get('/tag/:tag/article',tagControl.articles);
+
+router.post("/images/upload",imageControl.upload);
+router.get("/images/:id",imageControl.download);
 
 module.exports = router;
 

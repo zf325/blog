@@ -5,5 +5,6 @@ module.exports = {
     articleControl:require("./article"),
     categoryControl:require("./category"),
     tagControl:require("./tag"),
-    commentControl:require("./comment")
+    commentControl:require("./comment"),
+    imageControl:require("./image")
 }
