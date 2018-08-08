@@ -1,3 +1,7 @@
+#data/images
+data/images/*.jpg
+data/images/*.png
+data/images/*.gif
 # Logs
 *.log
 npm-debug.log*

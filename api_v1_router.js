@@ -26,8 +26,7 @@ router.get('/category/:category/article',categoryControl.articles);
 router.get('/tag',tagControl.list);
 router.get('/tag/:tag/article',tagControl.articles);
 
-router.post("/images/upload",imageControl.upload);
-router.get("/images/:id",imageControl.download);
+router.post("/image/upload",imageControl.upload);
 
 module.exports = router;
 

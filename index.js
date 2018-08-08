@@ -15,13 +15,12 @@ let app = new koa();
 
 app.use(views(path.join(__dirname,"view"),{map:{html:"ejs"}}));
 app.use(statics(path.join(__dirname,"static")));
-
-
 app.use(koaBody({
     multipart:true,
-    // uploadDir:"./data/images",
-    // hash:"md5",
-    // maxFieldsSize:10*1024*1024
+    formidable:{
+        hash:"md5",
+        maxFieldsSize:10*1024*1024
+    }
 }));
 
 app.use(router.routes()).use(router.allowedMethods());

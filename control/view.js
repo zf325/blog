@@ -47,3 +47,7 @@ exports.articles = async(ctx,next)=>{
 exports.notFound = async(ctx,next)=>{
     await ctx.render("404.ejs");
 }
+
+exports.serverInsideError = async(ctx,next)=>{
+    await ctx.render("500.ejs");
+}
