@@ -1,6 +1,5 @@
 "use strict";
 
-const markdown = require("markdown-js");
 const {ArticleModel,TagModel} = require("./../model");
 const Log = require("./../logs/log");
 
