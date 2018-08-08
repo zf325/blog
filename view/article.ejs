@@ -7,6 +7,7 @@
     <link href = "../css/common.css" rel = "stylesheet">
     <link href = "../css/article.css" rel = "stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title><%- title %></title>
 </head>
 <body>
@@ -34,11 +35,26 @@
             <%- body %>
         </div>
     </div>
-    <form method ="POST" action="/api/v1/images/upload" enctype="multipart/form-data">
-        <input type="file" />
-        <input type="submit" value = "提交"/>
+    <form method ="POST" action="http://127.0.0.1:3000/api/v1/image/upload" enctype="multipart/form-data" id="form">
+        <input type="file" id= "file"/>
+        <input type="button" value = "提交" onclick="sum()"/>
     </form>
     
-    
+    <script>
+        function sum(){
+        alert(11)
+        var file = document.getElementById("file").files[0],        
+        form = new FormData();
+        form.append("file",file);
+        axios({
+            url:"http://127.0.0.1:3000/api/v1/image/upload",
+            data:form,
+            method:"post",
+            headers: {'Content-Type': 'multipart/form-data'},
+        }).then(function(res){
+            console.log(res)
+        });
+    }
+    </script>
 </body>
 </html>
