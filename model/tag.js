@@ -9,6 +9,10 @@ const TagSchema = new Schema({
         unique:true,
         index:true
     },
+    name:{
+        type:String,
+        unique:true
+    },
     count:{
         type:Number,
         default:0
